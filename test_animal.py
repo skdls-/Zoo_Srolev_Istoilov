@@ -6,7 +6,7 @@ class TestAnimal(unittest.TestCase):
 
     def setUp(self):
 
-        self.my_animal = Animal("cat", 5, "Cattie", "female", 4, 15, True)
+        self.my_animal = Animal("cat", 5, "Cattie", "female", 4, 15, True, 9)
 
     def test_init(self):
 
