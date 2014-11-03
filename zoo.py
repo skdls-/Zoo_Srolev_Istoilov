@@ -12,7 +12,8 @@ class Zoo:
         self.animals.append(animal)
 
     def calculate_income(self):
-        self.budget += 60
+        for animal in self.animals:
+            self.budget += 60
 
     def calculate_outcome(self):
         outcome = 0
