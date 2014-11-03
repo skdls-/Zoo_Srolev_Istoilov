@@ -1,0 +1,38 @@
+[
+	{
+		"species": "cat", 
+		"age": 0 , 
+		"name": "Catty", 
+		"gender": "female", 
+		"weight": 5, 
+		"life_expendency": 10, 
+		"is_vegetarian" = False, 
+		"gestation_period": 30, 
+		"food_per_day": 1, 
+		"average_weight": 10
+	},
+	{
+		"species": "dog", 
+		"age": 4 , 
+		"name": "Doggie", 
+		"gender": "male", 
+		"weight": 5, 
+		"life_expendency": 10, 
+		"is_vegetarian" = False, 
+		"gestation_period": 35, 
+		"food_per_day": 1, 
+		"average_weight": 15
+	},
+	{
+		"species": "rino", 
+		"age": 0 , 
+		"name": "Rino", 
+		"gender": "male", 
+		"weight": 50, 
+		"life_expendency": 40, 
+		"is_vegetarian" = True, 
+		"gestation_period": 40, 
+		"food_per_day": 1, 
+		"average_weight": 15
+	}
+]

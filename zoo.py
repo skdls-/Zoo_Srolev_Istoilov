@@ -1,3 +1,4 @@
+import json
 from animal import Animal
 
 
@@ -59,3 +60,25 @@ class Zoo:
                 for couple in number_of_couples:
                     newborn = self.add_newborn(species)
                     self.animals.append(newborn)
+
+    def load_zoo(self, filename):
+
+        with open(filename, 'r') as load_zoo:
+            load_data = json.load(load_zoo)
+            loaded_zoo = Zoo(load_data, 50, 1000)
+            for animal in load_data:
+                anim = Animal(animal["name"], animal["gender"], animal["weight"], animal["life_expectancy"], animal["is_vegetarian"], animal["gestation_period"], animal["food_per_day"], animal["average_weight"])
+                loaded_zoo.accomodate(anim)
+            return loaded_zoo
+
+    def save(self, filename):
+
+        #"name": filename
+        dict = {"name": filename, "animals": []}
+        for animal in self.animals:
+            dict["animals"].append(animal.__dict__)
+        file = open(filename, "w")
+        json_text = json.dumps(dict, indent=4, separators=(',', ': '))
+        file.write(json_text)
+
+        file.close()
