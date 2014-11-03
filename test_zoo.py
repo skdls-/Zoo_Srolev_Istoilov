@@ -1,5 +1,6 @@
 import unittest
 from zoo import Zoo
+from animal import Animal
 
 
 class TestZoo(unittest.TestCase):
@@ -19,12 +20,29 @@ class TestZoo(unittest.TestCase):
         self.assertEqual(self.my_zoo.KILO_VEG_FOOD, 2)
 
     def test_accomodate(self):
-        self.my_zoo.accomodate("antilope")
-        self.assertListEqual(self.my_zoo.animals, ["antilope"])
+        animal = Animal("cat", 2, "Kat", "male", 2, 15, False)
+        self.my_zoo.accomodate(animal)
+        self.assertListEqual(self.my_zoo.animals, [animal])
 
     def test_calculate_incomes(self):
+        animal = Animal("cat", 2, "Kat", "male", 2, 15, False)
+        self.my_zoo.accomodate(animal)
         self.my_zoo.calculate_income()
         self.assertEqual(self.my_zoo.budget, 1060)
+
+    def test_calculate_outcome(self):
+        animal = Animal("cat", 2, "Kat", "male", 2, 15, False)
+        self.my_zoo.accomodate(animal)
+        self.my_zoo.calculate_outcome()
+        self.assertEqual(self.my_zoo.budget, 996)
+
+    def test_reproduce(self):
+        animal = Animal("cat", 2, "Kat", "male", 2, 15, False)
+        self.my_zoo.accomodate(animal)
+        animal = Animal("cat", 2, "Kate", "female", 3, 15, False)
+        self.my_zoo.accomodate(animal)
+        self.my_zoo.reproduce()
+
 
 if __name__ == '__main__':
     unittest.main()
