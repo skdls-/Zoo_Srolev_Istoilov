@@ -67,8 +67,11 @@ class Zoo:
         for species in all_animals:
             for animal in self.animals:
                 males = [animal.gender for animal in self.animals if animal.species == species]
-                if "male" in males and animal.gender == "female":
-                    if animal.is_pregnant is False and animal.not_pregnant_for >= 182:
+                has_male = "male" in males
+                animal_is_female = animal.gender == "female"
+                pregnant = animal.is_pregnant is False
+                is_not_pregnant = animal.not_pregnant_for >= 182
+                if has_male and animal_is_female and pregnant and is_not_pregnant:
                         animal.is_pregnant = True
                         animal.pregnant_for += 1
                         animal.not_pregnant_for = 0
