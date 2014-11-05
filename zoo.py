@@ -1,4 +1,6 @@
 import json
+import random
+import string
 from animal import Animal
 
 
@@ -23,9 +25,9 @@ class Zoo:
         outcome = 0
         for animal in self.animals:
             if animal.food_type == "carnivore":
-                outcome += self.KILO_MEAT
+                outcome += self.KILO_MEAT * animal.food_weight_ratio
             else:
-                outcome += self.KILO_VEG_FOOD
+                outcome += self.KILO_VEG_FOOD * animal.food_weight_ratio
 
         self.budget -= outcome
 
@@ -33,33 +35,50 @@ class Zoo:
         if animal in self.animals:
             self.animals.remove(animal)
 
-    def generate_list_couples(self):
-        all_animals = {}
-        for animal in self.animals:
-            if animal.species not in all_animals:
-                all_animals[animal.species] = []
+    def give_name(self, length):
+        name = ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
+        return name
 
-            all_animals[animal.species].append(animal.gender)
+    def determine_gender(self):
+        gender_percent = random.randint(0, 100)
+        if gender_percent <= 50:
+            gender = "male"
+        else:
+            gender = "female"
 
-        return all_animals
+        return gender
 
-    def add_newborn(self, species):
-        gender = "male"
+    def add_newborn(self, animal):
+        gender = self.determine_gender()
+        name = self.give_name(6)
         weight = 0
-        newborn = Animal(species, 0, "", gender, weight, life_expectancy, is_vegetarian, )
+        average_weight = animal.average_weight
+        life_expectancy = animal.life_expectancy
+        is_vegetarian = animal.is_vegetarian
+        gestation_period = animal.gestation_period
+        food_per_day = animal.food_per_day
+        average_weight = animal.average_weight
+        newborn = Animal(species, 0, name, gender, weight, life_expectancy, is_vegetarian, gestation_period, food_per_day, average_weight)
         return newborn
 
     def reproduce(self):
-        all_animals = self.generate_list_couples()
-        for species, gender_list in all_animals.items():
-            if gender_list.count("males") > gender_list.count("females"):
-                number_of_couples = gender_list.count("females")
-            else:
-                number_of_couples = gender_list.count("males")
+        all_animals = [animal.species for animal in self.animals]
+        all_animals = set(all_animals)
+        for species in all_animals:
+            for animal in self.animals:
+                males = [animal.gender for animal in self.animals if animal.species == species]
+                if "male" in males and animal.gender == "female":
+                    if animal.is_pregnant is False and animal.not_pregnant_for >= 182:
+                        animal.is_pregnant = True
+                        animal.pregnant_for += 1
+                        animal.not_pregnant_for = 0
+                else:
+                    animal.not_pregnant_for += 1
 
-                for couple in number_of_couples:
-                    newborn = self.add_newborn(species)
+                if animal.is_pregnant and animal.pregnant_for == animal.gestation_period:
+                    newborn = self.add_newborn(animal)
                     self.animals.append(newborn)
+
 
     def load_zoo(self, filename):
 

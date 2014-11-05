@@ -27,6 +27,10 @@ class Animal:
         else:
             self.food_type = "herbivore"
 
+        self.is_pregnant = False
+        self.not_pregnant_for = 0
+        self.pregnant_for = 0
+
     def grow(self, years, kilos):
 
         self.age += years
