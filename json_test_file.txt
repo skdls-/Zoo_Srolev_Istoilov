@@ -1,0 +1,44 @@
+[
+	{
+		"species": "Jaguar", 
+		"age": 3 , 
+		"name": "Jag", 
+		"gender": "male", 
+		"weight": 5
+	},
+	{
+		"species": "Jaguar", 
+		"age": 3 , 
+		"name": "Jage", 
+		"gender": "female", 
+		"weight": 5
+	},
+	{
+		"species": "Wolf", 
+		"age": 4 , 
+		"name": "Doggie", 
+		"gender": "male", 
+		"weight": 5
+	},
+	{
+		"species": "Wolf", 
+		"age": 4 , 
+		"name": "Wolfie", 
+		"gender": "female", 
+		"weight": 5
+	},
+	{
+		"species": "Horse", 
+		"age": 0 , 
+		"name": "Marko", 
+		"gender": "male", 
+		"weight": 50
+	},
+	{
+		"species": "Horse", 
+		"age": 0 , 
+		"name": "Gipsie", 
+		"gender": "female", 
+		"weight": 50
+	}
+]

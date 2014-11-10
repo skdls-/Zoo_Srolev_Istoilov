@@ -20,26 +20,27 @@ class TestZoo(unittest.TestCase):
         self.assertEqual(self.my_zoo.KILO_VEG_FOOD, 2)
 
     def test_accomodate(self):
-        animal = Animal("cat", 2, "Kat", "male", 2, 15, False, 2, 2, 5)
+        animal = Animal("Wolf", 2, "Kat", "male", 2,)
         self.my_zoo.accomodate(animal)
         self.assertListEqual(self.my_zoo.animals, [animal])
 
     def test_calculate_incomes(self):
-        animal = Animal("cat", 2, "Kat", "male", 2, 15, False, 2, 2, 5)
+        animal = Animal("Wolf", 2, "Kat", "male", 2,)
         self.my_zoo.accomodate(animal)
         self.my_zoo.calculate_income()
         self.assertEqual(self.my_zoo.budget, 1060)
 
     def test_calculate_outcome(self):
-        animal = Animal("cat", 2, "Kat", "male", 2, 15, False, 2, 2, 5)
+        animal = Animal("Wolf", 2, "Kat", "male", 2)
         self.my_zoo.accomodate(animal)
-        self.my_zoo.calculate_outcome()
-        self.assertEqual(self.my_zoo.budget, 998)
+        outcome = self.my_zoo.calculate_outcome()
+        self.my_zoo.budget -= outcome
+        self.assertEqual(self.my_zoo.budget, 999.6)
 
     def test_reproduce(self):
-        animal = Animal("cat", 2, "Kat", "male", 2, 15, False, 2, 2, 5)
+        animal = Animal("Wolf", 2, "Kat", "male", 2)
         self.my_zoo.accomodate(animal)
-        animal = Animal("cat", 2, "Kate", "female", 3, 15, False, 2, 2, 5)
+        animal = Animal("Wolf", 2, "Kate", "female", 3)
         self.my_zoo.accomodate(animal)
         self.my_zoo.reproduce()
 
